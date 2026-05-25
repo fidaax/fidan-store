@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIDAN — Sparkle Mini Dresses</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <canvas id="sparkle-bg"></canvas>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="logo">FIDAN</span>
+        <span class="logo-sub">Sparkle Collection</span>
+      </div>
+      <nav class="header-nav">
+        <a href="#shop" class="nav-link">Shop</a>
+        <a href="#" class="nav-link">Collections</a>
+        <a href="#" class="nav-link">About</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" aria-label="Search">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+        <button class="icon-btn cart-btn" aria-label="Cart">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-bg-image"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">New Collection 2026</p>
+      <h1 class="hero-title">
+        Sparkle &amp;<br>
+        <em>Shine</em>
+      </h1>
+      <p class="hero-sub">Exclusively crafted for the woman who glows.<br>Mini dresses adorned in sequins, crystals &amp; light.</p>
+      <a href="#shop" class="btn-hero">Explore Collection</a>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- SHOP -->
+  <section class="shop" id="shop">
+    <div class="shop-inner">
+
+      <div class="shop-header">
+        <h2 class="shop-title">Our Collection</h2>
+        <p class="shop-sub">Every piece designed to make you unforgettable</p>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="category-tabs" role="tablist">
+        <button class="tab-btn active" data-category="night" role="tab" aria-selected="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          </svg>
+          Night Dresses
+        </button>
+        <button class="tab-btn" data-category="wedding" role="tab" aria-selected="false">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+          </svg>
+          Wedding Dresses
+        </button>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <span class="filter-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+          </svg>
+          Filter by Price
+        </span>
+        <div class="filter-options">
+          <label class="filter-pill">
+            <input type="radio" name="price" value="all" checked>
+            <span>All</span>
+          </label>
+          <label class="filter-pill">
+            <input type="radio" name="price" value="under300">
+            <span>Under $300</span>
+          </label>
+          <label class="filter-pill">
+            <input type="radio" name="price" value="300-600">
+            <span>$300 – $600</span>
+          </label>
+          <label class="filter-pill">
+            <input type="radio" name="price" value="600-1000">
+            <span>$600 – $1,000</span>
+          </label>
+          <label class="filter-pill">
+            <input type="radio" name="price" value="over1000">
+            <span>Over $1,000</span>
+          </label>
+        </div>
+      </div>
+
+      <p class="product-count" id="product-count"></p>
+      <div class="product-grid" id="product-grid"></div>
+
+      <div class="empty-state" id="empty-state">
+        <div class="empty-star">✦</div>
+        <p>No dresses found in this price range.</p>
+        <button class="btn-reset" id="btn-reset">Show All</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- QUICK-VIEW MODAL -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div class="modal-inner">
+        <div class="modal-img-wrap">
+          <img id="modal-img" src="" alt="" loading="lazy">
+          <span class="modal-img-badge" id="modal-img-badge"></span>
+        </div>
+        <div class="modal-details">
+          <p class="modal-category" id="modal-category"></p>
+          <h2 class="modal-name" id="modal-name"></h2>
+          <p class="modal-price" id="modal-price"></p>
+          <p class="modal-desc" id="modal-desc"></p>
+          <div class="modal-sizes">
+            <span class="size-label">Size</span>
+            <div class="size-options" id="size-options">
+              <button class="size-btn active">XS</button>
+              <button class="size-btn">S</button>
+              <button class="size-btn">M</button>
+              <button class="size-btn">L</button>
+            </div>
+          </div>
+          <button class="btn-add-cart" id="btn-add-cart">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+            Add to Cart
+          </button>
+          <p class="modal-shipping">✦ Free shipping on orders over $500</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">FIDAN</div>
+        <p class="footer-tagline">Shine in every moment</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="#">Night Dresses</a>
+          <a href="#">Wedding Dresses</a>
+          <a href="#">New Arrivals</a>
+        </div>
+        <div class="footer-col">
+          <h4>Info</h4>
+          <a href="#">Size Guide</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="#">Instagram</a>
+          <a href="#">Pinterest</a>
+          <a href="#">TikTok</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 FIDAN. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
